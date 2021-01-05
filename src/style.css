@@ -46,7 +46,12 @@ li {
   font-size: 1.3em;
   font-weight: 400;
 }
-.weather-picture {
+.current-weather-temp .units {
+  position: relative;
+  font-size: 15px;
+  top: -5px;
+}
+.weather-picture-fix img {
   width: 350px;
   display: block;
   margin: 0 auto;
