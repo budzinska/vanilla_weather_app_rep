@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style.css" />
+    <meta name="viewport" content="width=device-width", initial-scale=1.0" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,66 +15,96 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/36c8511ec3.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/style.css" />
     <title>Weather app</title>
   </head>
   <body>
     <div class="container">
       <div class="weather-app">
-        <h1>New York</h1>
-        <h2>16:00</h2>
+        <div class="row">
+          <div class="col">
+            <h1 class="header">New York</h1>
+            <h2 class="header">16:00</h2>
+          </div>
+          <div class="col">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control input-style"
+                placeholder="City"
+                aria-label="City"
+                aria-describedby="basic-addon2"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="fas fa-search-location"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <ul>
-          <li>Rain</li>
-          <li>23C</li>
+          <li class="current-weather-desc">Rain</li>
+          <li class="current-weather-temp">23°C |°F</li>
         </ul>
         <div class="weather-picture">
           <img src="src/pictures/pic_rain.svg" />
         </div>
-        <div class="row">
-          <div class="col">Ikonka</div>
-          <div class="col">
-            <ul>
-              <li>Today</li>
-              <li>clear</li>
-            </ul>
+        <div class="forecast">
+          <div class="row">
+            <div class="col center">Ikonka</div>
+            <div class="col-3">
+              <ul>
+                <li>Today</li>
+                <li>clear</li>
+              </ul>
+            </div>
+            <div class="col left-center">22C</div>
+            <div class="col left-center">15m/s</div>
+            <div class="col left-center">opady</div>
           </div>
-          <div class="col">22C</div>
-          <div class="col">15m/s</div>
-          <div class="col">opady</div>
+          <div class="row">
+            <div class="col center">Ikonka</div>
+            <div class="col-3">
+              <ul>
+                <li>Tomorrow</li>
+                <li>clear</li>
+              </ul>
+            </div>
+            <div class="col left-center">22C</div>
+            <div class="col left-center">15m/s</div>
+            <div class="col left-center">opady</div>
+          </div>
+          <div class="row">
+            <div class="col center">Ikonka</div>
+            <div class="col-3">
+              <ul>
+                <li>Today</li>
+                <li>clear</li>
+              </ul>
+            </div>
+            <div class="col left-center">22C</div>
+            <div class="col left-center">15m/s</div>
+            <div class="col left-center">opady</div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col">Ikonka</div>
-          <div class="col">
-            <ul>
-              <li>Tomorrow</li>
-              <li>clear</li>
-            </ul>
-          </div>
-          <div class="col">22C</div>
-          <div class="col">15m/s</div>
-          <div class="col">opady</div>
-        </div>
-        <div class="row">
-          <div class="col">Ikonka</div>
-          <div class="col">
-            <ul>
-              <li>Today</li>
-              <li>clear</li>
-            </ul>
-          </div>
-          <div class="col">22C</div>
-          <div class="col">15m/s</div>
-          <div class="col">opady</div>
+        <div class="author">
+          <small>
+            <a
+              href="https://github.com/budzinska/vanilla_weather_app_rep"
+              target="_blank"
+              class="link-style"
+              >Open-source code
+            </a>
+            by Anna Budzinska
+          </small>
         </div>
       </div>
-      <small>
-        <a
-          href="https://github.com/budzinska/vanilla_weather_app_rep"
-          terget="_blank"
-          >Open source code
-        </a>
-        by Anna Budzinska
-      </small>
     </div>
-    <script src="src/style.css"></script>
+    <script src="src/app.js"></script>
   </body>
 </html>
