@@ -29,13 +29,23 @@ function displayTemperature(response) {
   );
   precipitationForecastElement.innerHTML = response.data.precipitation.value;*/
 }
+function search(city) {
+  let apiKey = "6d0dc84f33996746a53bd0932ee1515d";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-let apiKey = "6d0dc84f33996746a53bd0932ee1515d";
-let city = "Sydney";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function citySubmit(event) {
+  event.preventDefault();
+  let cityNameInputElement = document.querySelector("#city-name-input");
+  cityNameInputElement;
+  search(cityNameInputElement.value);
+}
 
-console.log(apiUrl);
-axios.get(apiUrl).then(displayTemperature);
+search("Moscow");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", citySubmit);
 
 let now = new Date();
 function formatDate(date) {

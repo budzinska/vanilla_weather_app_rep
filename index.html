@@ -32,20 +32,28 @@
             <h2 class="header">16:00</h2>
           </div>
           <div class="col">
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control input-style"
-                placeholder="City"
-                aria-label="City"
-                aria-describedby="basic-addon2"
-              />
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="fas fa-search-location"></i>
-                </button>
+            <form id="search-form">
+              <div class="input-group mb-3">
+                <input
+                  id="city-name-input"
+                  type="search"
+                  autocomplete="off"
+                  class="form-control input-style"
+                  placeholder="City"
+                  aria-label="City"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="submit"
+                    value="search"
+                  >
+                    <i class="fas fa-search-location"></i>
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <ul>
