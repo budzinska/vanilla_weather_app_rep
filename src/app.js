@@ -1,7 +1,5 @@
 function displayTemperature(response) {
-  console.log(response.data);
   let cityElement = document.querySelector("#city");
-  /*jak te dwa gówna połączyć, próbowałam qselectorAll i nie poszło*/
   let temperatureElement = document.querySelector("#temperature");
   let temperatureForecastElement = document.querySelector(
     "#temperature-forecast"
@@ -11,19 +9,22 @@ function displayTemperature(response) {
     "#description-forecast"
   );
   let windSpeedElement = document.querySelector("#wind-speed-forecast");
+  let forecastIconElement = document.querySelector("#forecast-icon");
+
   cityElement.innerHTML = response.data.name;
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   temperatureForecastElement.innerHTML = Math.round(response.data.main.temp);
   descriptionElement.innerHTML = response.data.weather[0].main;
   descriptionForecastElement.innerHTML = response.data.weather[0].main;
   windSpeedElement.innerHTML = response.data.wind.speed;
-  /*
-  let weatherForecastIconElement = document.querySelector(
-    "#weather-forecast-icon"
+
+  forecastIconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  weatherForecastIconElement.innerHTML = response.data.weather[0].icon;
-  
-  let precipitationForecastElement = document.querySelector(
+  forecastIconElement.setAttribute("alt", response.data.weather[0].main);
+
+  /*let precipitationForecastElement = document.querySelector(
     "#precipitation-forecast"
   );
   precipitationForecastElement.innerHTML = response.data.precipitation.value;*/
