@@ -19,6 +19,7 @@
       src="https://kit.fontawesome.com/36c8511ec3.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather app</title>
   </head>
@@ -27,7 +28,7 @@
       <div class="weather-app">
         <div class="row">
           <div class="col">
-            <h1 class="header">New York</h1>
+            <h1 id="city" class="header"></h1>
             <h2 class="header">16:00</h2>
           </div>
           <div class="col">
@@ -48,9 +49,9 @@
           </div>
         </div>
         <ul>
-          <li class="current-weather-desc">Rain</li>
+          <li id="description" class="current-weather-desc"></li>
           <li class="current-weather-temp">
-            23<span class="units">°C |°F</span>
+            <span id="temperature"></span><span class="units">°C |°F</span>
           </li>
         </ul>
         <div class="weather-picture-fix">
@@ -58,19 +59,29 @@
         </div>
         <div class="forecast">
           <div class="row">
-            <div class="col center">Ikonka</div>
+            <div class="col center">
+              <span id="weather-forecast-icon"></span>
+            </div>
             <div class="col-3">
               <ul>
                 <li>Today</li>
-                <li>clear</li>
+                <li id="description-forecast"></li>
               </ul>
             </div>
-            <div class="col left-center">22C</div>
-            <div class="col left-center">15m/s</div>
-            <div class="col left-center">opady</div>
+            <div class="col left-center">
+              <span id="temperature-forecast"></span>°C
+            </div>
+            <div class="col left-center">
+              <span id="wind-speed-forecast"></span>m/s
+            </div>
+            <div class="col left-center">
+              <span id="precipitation-forecast"></span>
+            </div>
           </div>
           <div class="row">
-            <div class="col center">Ikonka</div>
+            <div class="col center">
+              <span>icon</span>
+            </div>
             <div class="col-3">
               <ul>
                 <li>Tomorrow</li>
