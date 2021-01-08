@@ -40,8 +40,11 @@ li {
   font-size: 1.5em;
   font-weight: 500;
   color: #537b7a;
-  text-transform: capitalize;
   margin: 0.8em 0 0 0;
+  display: block;
+}
+.current-weather-desc:first-letter {
+  text-transform: capitalize;
 }
 .current-weather-temp {
   font-size: 1.3em;
@@ -87,9 +90,22 @@ li {
   font-size: 12px;
   background: white;
 }
-.link-style {
+a {
+  text-decoration: none;
+  color: #4c4c4c;
+}
+.active-link {
+  text-decoration: none;
   color: #7dbbb9;
+  cursor: default;
+}
+
+a.link-style {
+  color: #7dbbb9;
+  text-decoration: none;
 }
 a:hover {
-  color: #edd09f;
+  color: #537b7a;
+  text-decoration: none;
+  cursor: default;
 }
