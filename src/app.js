@@ -1,40 +1,110 @@
+function formatDate(date) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let currentDay = days[date.getDay()];
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minute = date.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+
+  let currentTime = hours + ":" + minute;
+  let formattedDate = `${currentDay} ${currentTime}`;
+  return formattedDate;
+}
+
+function updateClock() {
+  let h2 = document.querySelector("h2");
+  h2.innerHTML = formatDate(new Date());
+  setTimeout(updateClock, 1000);
+}
+updateClock();
+
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minute = date.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  return `${hours}:${minute}`;
+}
+
 function displayTemperature(response) {
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperature");
-  let temperatureForecastElement = document.querySelector(
-    "#temperature-forecast"
-  );
   let descriptionElement = document.querySelector("#description");
-  let descriptionForecastElement = document.querySelector(
-    "#description-forecast"
-  );
-  let windSpeedElement = document.querySelector("#wind-speed-forecast");
-  let forecastIconElement = document.querySelector("#forecast-icon");
 
   celsiusTemperature = response.data.main.temp;
 
   cityElement.innerHTML = response.data.name;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  temperatureForecastElement.innerHTML = Math.round(response.data.main.temp);
   descriptionElement.innerHTML = response.data.weather[0].description;
-  descriptionForecastElement.innerHTML = response.data.weather[0].main;
-  windSpeedElement.innerHTML = response.data.wind.speed;
+}
 
-  forecastIconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  forecastIconElement.setAttribute("alt", response.data.weather[0].main);
-
-  /*let precipitationForecastElement = document.querySelector(
-    "#precipitation-forecast"
-  );
-  precipitationForecastElement.innerHTML = response.data.precipitation.value;*/
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = "";
+  for (let i = 0; i < 3; ++i) {
+    let forecast = response.data.list[i * 2];
+    let iconId = forecast.weather[0].id;
+    let precValue = 0;
+    if (forecast.weather[0].main === "Snow") {
+      precValue = forecast.snow["3h"];
+    } else if (forecast.weather[0].main === "Rain") {
+      precValue = forecast.rain["3h"];
+    }
+    let precNode = `<span id="precipitation-forecast">${Math.ceil(
+      precValue
+    )} mm</span><br>`;
+    forecastElement.innerHTML += `
+        <div class="row">
+            <div class="col-2">
+              <i src="" alt="" id="forecast-icon" class="wi wi-owm-${iconId} forecast-img center"></i>
+            </div>
+            <div class="col left-center">
+              <span id="hour-forecast">${formatHours(forecast.dt * 1000)}</span>
+            </div>
+            <div class="col left-center forecast-max-temp">
+              <span id="temperature-max-forecast" class="forecast-temp" data-celctemp="${Math.round(
+                forecast.main.temp_max
+              )}">
+              ${Math.round(forecast.main.temp_max)}°C</span>
+            </div>
+            <div class="col left-center">
+              <span id="wind-speed-forecast">${Math.round(
+                forecast.wind.speed
+              )} m/s</span>
+            </div>
+            <div class="col left-center">
+              ${precNode}
+            </div>
+          </div>`;
+  }
 }
 
 function search(city) {
   let apiKey = "6d0dc84f33996746a53bd0932ee1515d";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -46,20 +116,25 @@ function citySubmit(event) {
 }
 
 function convertToFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let conv = (x) => Math.round((x * 9) / 5 + 32);
+  let fahrenheitTemperature = conv(celsiusTemperature);
   let temperatureElement = document.querySelector("#temperature");
   celsiusConversionLink.classList.remove("active-link");
   fahrenheitConversionLink.classList.add("active-link");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  temperatureElement.innerHTML = fahrenheitTemperature;
+  document.querySelectorAll(".forecast-temp").forEach((element) => {
+    element.innerText = conv(element.dataset.celctemp) + "°F";
+  });
 }
 
 function convertToCelsius(event) {
-  event.preventDefault();
   celsiusConversionLink.classList.add("active-link");
   fahrenheitConversionLink.classList.remove("active-link");
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  document.querySelectorAll(".forecast-temp").forEach((element) => {
+    element.innerText = element.dataset.celctemp + "°C";
+  });
 }
 
 let celsiusTemperature = null;
@@ -73,30 +148,4 @@ fahrenheitConversionLink.addEventListener("click", convertToFahrenheit);
 let celsiusConversionLink = document.querySelector("#celsius-conversion");
 celsiusConversionLink.addEventListener("click", convertToCelsius);
 
-search("Moscow");
-
-let now = new Date();
-function formatDate(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let currentDay = days[date.getDay()];
-
-  let minute = now.getMinutes();
-  if (minute < 10) {
-    minute = `0${minute}`;
-  }
-
-  let currentTime = now.getHours() + ":" + minute;
-  let formattedDate = `${currentDay} ${currentTime}`;
-  return formattedDate;
-}
-let h2 = document.querySelector("h2");
-h2.innerHTML = formatDate(now);
+search("Amsterdam");

@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="css/weather-icons.min.css" rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/36c8511ec3.js"
       crossorigin="anonymous"
@@ -29,7 +30,7 @@
         <div class="row">
           <div class="col">
             <h1 id="city" class="header"></h1>
-            <h2 class="header">16:00</h2>
+            <h2 class="header"></h2>
           </div>
           <div class="col">
             <form id="search-form">
@@ -69,54 +70,10 @@
         <div class="weather-picture-fix">
           <img src="src/pictures/pic_rain.svg" alt="Rain" />
         </div>
-        <div class="forecast">
-          <div class="row">
-            <div class="col center">
-              <img src="" alt="" id="forecast-icon" />
-            </div>
-            <div class="col-3">
-              <ul>
-                <li>Today</li>
-                <li id="description-forecast"></li>
-              </ul>
-            </div>
-            <div class="col left-center">
-              <span id="temperature-forecast"></span>°C
-            </div>
-            <div class="col left-center">
-              <span id="wind-speed-forecast"></span>m/s
-            </div>
-            <div class="col left-center">
-              <span id="precipitation-forecast"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col center">
-              <span>icon</span>
-            </div>
-            <div class="col-3">
-              <ul>
-                <li>Tomorrow</li>
-                <li>clear</li>
-              </ul>
-            </div>
-            <div class="col left-center">22C</div>
-            <div class="col left-center">15m/s</div>
-            <div class="col left-center">opady</div>
-          </div>
-          <div class="row">
-            <div class="col center">Ikonka</div>
-            <div class="col-3">
-              <ul>
-                <li>Today</li>
-                <li>clear</li>
-              </ul>
-            </div>
-            <div class="col left-center">22C</div>
-            <div class="col left-center">15m/s</div>
-            <div class="col left-center">opady</div>
-          </div>
-        </div>
+
+        <!--forecast beginning-->
+        <div id="forecast"></div>
+        <!--forecast beginning-->
         <div class="author">
           <small>
             <a
