@@ -55,6 +55,27 @@ function displayTemperature(response) {
   cityElement.innerHTML = response.data.name;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
+  let weatherImage = document.querySelector("#weather-image");
+  weatherImage.src = displayWeatherImage(response);
+}
+
+function displayWeatherImage(response) {
+  let iconID = response.data.weather[0].id;
+  let weatherImage = "";
+  if (iconID < 623 && iconID > 599) {
+    weatherImage = "src/pictures/snow.png";
+  } else if (iconID >= 200 && iconID < 600) {
+    weatherImage = "src/pictures/rain.png";
+  } else if (iconID >= 700 && iconID < 800) {
+    weatherImage = "src/pictures/wind_dog_walk.png";
+  } else if (iconID === 800) {
+    weatherImage = "src/pictures/clear.png";
+  } else if (iconID > 800 && iconID < 805) {
+    weatherImage = "src/pictures/cloudy.png";
+  } else {
+    weatherImage = "src/pictures/forecast.png";
+  }
+  return weatherImage;
 }
 
 function displayForecast(response) {
@@ -63,13 +84,19 @@ function displayForecast(response) {
   for (let i = 0; i < 3; ++i) {
     let forecast = response.data.list[i * 2];
     let iconId = forecast.weather[0].id;
+    let rain = `<i class="wi wi-rain"></i>`;
+    let snow = `<i class="wi wi-snow"></i>`;
+    let precNode = "";
     let precValue = 0;
     if (forecast.weather[0].main === "Snow") {
       precValue = forecast.snow["3h"];
+      precNode += snow;
     } else if (forecast.weather[0].main === "Rain") {
       precValue = forecast.rain["3h"];
+      precNode += rain;
     }
-    let precNode = `<span id="precipitation-forecast">${Math.ceil(
+
+    precNode += `<span id="precipitation-forecast">${Math.ceil(
       precValue
     )} mm</span><br>`;
     forecastElement.innerHTML += `
@@ -91,7 +118,7 @@ function displayForecast(response) {
                 forecast.wind.speed
               )} m/s</span>
             </div>
-            <div class="col right-center"><i class="wi wi-rain"></i>
+            <div class="col right-center">
                ${precNode}
             </div>
           </div>`;

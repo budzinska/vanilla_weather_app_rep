@@ -16,15 +16,14 @@ li {
   margin: 0px;
   padding: 0px;
 }
-.weather-picture-main img {
-  width: 300px;
-  display: block;
-  margin: 0 auto;
-  padding: 0 0 20px 0;
-}
 a {
   text-decoration: none;
   color: #4c4c4c;
+}
+img {
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 25px;
 }
 a.link-style {
   color: #7dbbb9;
