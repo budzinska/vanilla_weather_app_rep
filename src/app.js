@@ -67,7 +67,7 @@ function displayWeatherImage(response) {
   } else if (iconID >= 200 && iconID < 600) {
     weatherImage = "src/pictures/rain.png";
   } else if (iconID >= 700 && iconID < 800) {
-    weatherImage = "src/pictures/wind_dog_walk.png";
+    weatherImage = "src/pictures/wind.png";
   } else if (iconID === 800) {
     weatherImage = "src/pictures/clear.png";
   } else if (iconID > 800 && iconID < 805) {
@@ -84,8 +84,8 @@ function displayForecast(response) {
   for (let i = 0; i < 3; ++i) {
     let forecast = response.data.list[i * 2];
     let iconId = forecast.weather[0].id;
-    let rain = `<i class="wi wi-rain"></i>`;
-    let snow = `<i class="wi wi-snow"></i>`;
+    let rain = `<i class="wi wi-rain"> </i>`;
+    let snow = `<i class="wi wi-snow"> </i>`;
     let precNode = "";
     let precValue = 0;
     if (forecast.weather[0].main === "Snow") {
