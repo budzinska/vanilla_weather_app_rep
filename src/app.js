@@ -129,10 +129,16 @@ function search(city) {
   let apiKey = "6d0dc84f33996746a53bd0932ee1515d";
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios
+    .get(apiUrl)
+    .then(displayForecast)
+    .catch((error) => alert("Sorry, failed to fetch forecast!"));
 
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
+  axios
+    .get(apiUrl)
+    .then(displayTemperature)
+    .catch((error) => {});
 }
 
 function citySubmit(event) {
