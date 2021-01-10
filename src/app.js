@@ -74,25 +74,25 @@ function displayForecast(response) {
     )} mm</span><br>`;
     forecastElement.innerHTML += `
         <div class="row">
-            <div class="col-2">
-              <i src="" alt="" id="forecast-icon" class="wi wi-owm-${iconId} forecast-img center"></i>
+            <div class="col">
+              <i src="" alt="" class="wi wi-owm-${iconId} center forecast-icon"></i>
             </div>
-            <div class="col left-center">
-              <span id="hour-forecast">${formatHours(forecast.dt * 1000)}</span>
+            <div class="col">
+              <span>${formatHours(forecast.dt * 1000)}</span>
             </div>
-            <div class="col left-center forecast-max-temp">
-              <span id="temperature-max-forecast" class="forecast-temp" data-celctemp="${Math.round(
+            <div class="col right-center forecast-max-temp">
+              <span class="forecast-temp" data-celctemp="${Math.round(
                 forecast.main.temp_max
               )}">
               ${Math.round(forecast.main.temp_max)}°C</span>
             </div>
-            <div class="col left-center">
-              <span id="wind-speed-forecast">${Math.round(
+            <div class="col right-center">
+              <i class="wi wi-strong-wind"></i><span> ${Math.round(
                 forecast.wind.speed
               )} m/s</span>
             </div>
-            <div class="col left-center">
-              ${precNode}
+            <div class="col right-center"><i class="wi wi-rain"></i>
+               ${precNode}
             </div>
           </div>`;
   }

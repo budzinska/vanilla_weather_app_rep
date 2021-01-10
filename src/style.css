@@ -1,3 +1,48 @@
+h1 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+h2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+}
+.weather-picture-main img {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding: 0 0 20px 0;
+}
+a {
+  text-decoration: none;
+  color: #4c4c4c;
+}
+a.link-style {
+  color: #7dbbb9;
+  text-decoration: none;
+}
+a:hover {
+  color: #537b7a;
+  text-decoration: none;
+  cursor: default;
+}
+#forecast {
+  border-radius: 25px 25px 0px 0px;
+  box-shadow: 0px -50px 80px #abd7d8;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 20px 30px 20px 20px;
+  background-color: white;
+}
 .header {
   text-align: start;
   margin: 2px;
@@ -11,31 +56,11 @@
   border-radius: 10px;
   font-family: "Roboto", sans-serif;
   color: #4c4c4c;
-  background-color: bisque;
+  background-color: white;
 }
-h1 {
-  font-size: 1.5em;
-  font-weight: 500;
-}
-h2 {
-  font-size: 16px;
-  font-weight: 400;
-}
-
 .input-style {
   font-size: 16px;
   font-weight: 400;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-li {
-  list-style: none;
-  text-align: left;
-  margin: 0px;
-  padding: 0px;
 }
 .current-weather-desc {
   font-size: 1.5em;
@@ -56,30 +81,23 @@ li {
   font-size: 15px;
   top: -5px;
 }
-.weather-picture-fix img {
-  width: 350px;
-  display: block;
-  margin: 0 auto;
-  padding: 0 0 20px 0;
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
-#forecast {
-  border-radius: 25px 25px 0px 0px;
-  /*box-shadow: 0px -50px 80px #abd7d8;*/
-  font-size: 14px;
-  font-weight: 300;
-  padding: 20px 10px 10px 10px;
-  background-color: white;
-}
-
-#forecast-icon {
+.forecast-icon {
   font-size: 20px;
+  color: #7dbbb9;
 }
 .forecast-max-temp {
   color: #7dbbb9;
   font-weight: 500;
 }
-
+.active-link {
+  text-decoration: none;
+  color: #7dbbb9;
+  cursor: default;
+}
 .author {
   margin: 0;
   padding: 0 0 10px 0;
@@ -87,35 +105,13 @@ li {
   font-size: 12px;
   background: white;
 }
-
-a {
-  text-decoration: none;
-  color: #4c4c4c;
-}
-.active-link {
-  text-decoration: none;
-  color: #7dbbb9;
-  cursor: default;
-}
-
-a.link-style {
-  color: #7dbbb9;
-  text-decoration: none;
-}
-a:hover {
-  color: #537b7a;
-  text-decoration: none;
-  cursor: default;
-}
-
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.left-center {
-  display: flex;
-  justify-content: left;
+.right-center {
+  text-align: right;
   align-items: center;
 }
 .down {
